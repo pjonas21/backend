@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 export async function connect() {
   try {
     await mongoose.connect(
-      "mongodb+srv://pjonas21:pjas@clusterhero.nlx6sgp.mongodb.net/hero-tickets?connectTimeoutMS=300000"
+      "mongodb+srv://<usrname>:<pass>@clusterhero.nlx6sgp.mongodb.net/hero"
     );
     // console.log("connected to database");
   } catch (error) {
