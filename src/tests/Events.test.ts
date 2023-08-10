@@ -33,7 +33,11 @@ describe("Event test", () => {
     // .attach('banner', 'D:\\Downloads\\vf10.jpeg')
     // .attach('flyers', 'D:\Downloads\flyer1-vf10.png')
 
+    console.log(response.error)
+    
     expect(response.status).toBe(201);
     expect(response.body).toEqual({ message: "Evento criado." });
+
+    
   });
 });

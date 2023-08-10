@@ -12,7 +12,6 @@ class App {
     this.middlewaresInitialize();
     this.initializeRoutes();
     this.interceptionError();
-    connect();
   }
 
   private initializeRoutes() {
@@ -26,6 +25,7 @@ class App {
   private middlewaresInitialize() {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
+    connect().then(() => console.log('Database connected.'));
   }
 
   listen() {

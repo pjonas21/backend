@@ -197,6 +197,7 @@ const config: Config = {
   preset:'ts-jest',
   maxWorkers: '100%',
   testMatch: ['**\\tests\\**\\*.test.ts'],
+  testTimeout: 30000,
 };
 
 export default config;
