@@ -1,33 +1,36 @@
-import express, { Application } from 'express'
-import { connect } from './infra/database'
-
+import express, { Application } from "express";
+import { connect } from "./infra/database";
+import { errorMiddleware } from "./middleware/error.middleware";
+import { EventRoutes } from "./routes/event.routes";
 
 class App {
-    public app: Application
-    constructor(){
-        this.app = express()
-        this.middlewaresInitialize()
-        this.initializeRoutes()
-        this.interceptionError()
-       connect()
-    }
+  public app: Application;
+  private eventRoutes = new EventRoutes();
 
-    initializeRoutes() {
-        // this.app.use()
-    }
+  constructor() {
+    this.app = express();
+    this.middlewaresInitialize();
+    this.initializeRoutes();
+    this.interceptionError();
+    connect();
+  }
 
-    interceptionError() {
-        // this.app.use()
-    }
+  private initializeRoutes() {
+    this.app.use("/events", this.eventRoutes.router);
+  }
 
-    middlewaresInitialize(){
-        this.app.use(express.json())
-        this.app.use(express.urlencoded({ extended: true}))
-    }
+  private interceptionError() {
+    this.app.use(errorMiddleware);
+  }
 
-    listen(){
-        this.app.listen(3333, () => console.log('server is running'))
-    }
+  private middlewaresInitialize() {
+    this.app.use(express.json());
+    this.app.use(express.urlencoded({ extended: true }));
+  }
+
+  listen() {
+    this.app.listen(3333, () => console.log("server is running"));
+  }
 }
 
-export { App }
+export { App };
