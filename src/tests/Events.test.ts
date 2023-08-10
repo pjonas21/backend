@@ -29,15 +29,16 @@ describe("Event test", () => {
       .field("location[longitude]", event.location.longitude)
       .field("price[sector]", event.price[0].sector)
       .field("price[amount]", event.price[0].amount)
-      .field("price[sector]", event.price[0].sector);
-    // .attach('banner', 'D:\\Downloads\\vf10.jpeg')
-    // .attach('flyers', 'D:\Downloads\flyer1-vf10.png')
+      .field("price[sector]", event.price[0].sector)
+      .attach("banner", "D:\\Downloads\\vf10.jpeg")
+      .attach("flyers", "D:\\Downloads\\flyer1-vf10.png")
+      .attach("flyers", "D:\\Downloads\\flyer1-vf10.png");
 
-    console.log(response.error)
-    
+    if (response.error) {
+      console.log(response.error);
+    }
+
     expect(response.status).toBe(201);
     expect(response.body).toEqual({ message: "Evento criado." });
-
-    
   });
 });
